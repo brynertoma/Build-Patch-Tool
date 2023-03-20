@@ -58,7 +58,6 @@ button {
 }
 
 button:hover {
-  border-color: #396cd8;
   background: #0d0d0d;
 }
 
@@ -125,15 +124,6 @@ i {
   cursor: pointer;
 }
 
-button {
-  box-sizing: border-box;
-  width: 100%;
-}
-
-#execute {
-  margin: 10px 0;
-}
-
 option {
   background: #222;
   padding: 10px;
@@ -168,9 +158,14 @@ button:disabled {
   cursor: not-allowed;
 }
 
-i:hover {
+.pass:hover {
   color: rgb(133, 246, 127);
-  cursor:pointer;
+  cursor: pointer;
+}
+
+i:hover {
+  color: #57b1f2;
+  cursor: pointer;
 }
 
 .tooltip {
@@ -180,14 +175,27 @@ i:hover {
 
 .tooltip:hover::after {
   content: "Please select the Build Patch Tool";
-  background-color: #333;
+  background-color: #111;
   color: white;
-  padding: 15px;
+  padding: 10px;
+  width: 50%;
   border-radius: 5px;
   position: absolute;
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
+}
+
+
+.tip {
+  position: absolute;
+  display: block;
+  width: calc(100% - 40px);
+  z-index: 10000000;
+  font-size: 1.1rem;
+  padding: 20px;
+  background: #1856d2;
+  text-align: justify;
 }
 
 input[type="password"]::-ms-reveal,
@@ -236,22 +244,52 @@ footer > * {
   flex: 1;
 }
 
+button {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#save,
+#clear,
+#reload {
+  margin: 10px 0;
+}
+
+
+#execute {
+  margin-bottom: 10px;
+}
+
 #kofi button,
-#docs button {
+#docs button,
+#help button,
+#save,
+#reload,
+#clear,
+#execute {
   font-weight: bold;
   transition: .3s;
 }
 
 #kofi:hover button,
-#docs:hover button {
+#docs:hover button,
+#help:hover button,
+#save:not(:disabled):hover,
+#execute:not(:disabled):hover {
   color: black;
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
-#kofi:hover button {
-  background: rgb(255, 120, 120);
-}
 
-#docs:hover button {
-  background: rgb(144, 224, 109);
+#kofi:hover button            { background: rgb(61, 194, 255);        }
+#docs:hover button            { background: rgb(242, 242, 61);        }
+#help:hover button            { background: rgb(245, 105, 255);        }
+#save:not(:disabled):hover    { background: rgb(126, 250, 73);        }
+#reload:not(:disabled):hover  { background: #dda852;                  }
+#clear:not(:disabled):hover   { background: #e5edee; color: black;  }
+#execute:not(:disabled):hover { background: #f95959;                  }
+
+#formButtons {
+  display: flex;
+  gap: 10px
 }
