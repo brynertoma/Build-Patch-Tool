@@ -1,8 +1,8 @@
 [package]
-name = "build-patch-tool"
-version = "0.0.0"
-description = "A Tauri App"
-authors = ["you"]
+name = "bpt"
+version = "1.0.5"
+description = "Build Patch Tool"
+authors = ["Bryner Toma"]
 license = ""
 repository = ""
 edition = "2021"
@@ -13,7 +13,7 @@ edition = "2021"
 tauri-build = { version = "1.2", features = [] }
 
 [dependencies]
-tauri = { version = "1.2", features = ["shell-open"] }
+tauri = { version = "1.2", features = ["dialog-all", "fs-exists", "fs-read-file", "fs-write-file", "path-all", "shell-open"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 

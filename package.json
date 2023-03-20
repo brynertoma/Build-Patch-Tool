@@ -1,5 +1,5 @@
 {
-  "name": "build-patch-tool",
+  "name": "BPT",
   "private": true,
   "version": "0.0.0",
   "type": "module",
