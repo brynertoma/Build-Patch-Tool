@@ -62,7 +62,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 // CREATE MODE SELECTION MENU
 //----------------------------------------------------------
 function CreateModeSelectionMenu() {
-
   for (let key in commands) {
     if (String(key) == "common") continue;
     let option = document.createElement("option")
