@@ -71,7 +71,6 @@ option:hover {
   background: dodgerblue;
 }
 
-
 input,
 button,
 select {
@@ -113,7 +112,6 @@ i {
 .bi-info-square {
   right: 10px;
 }
-
 
 #mode {
   width: 100%;
@@ -186,7 +184,6 @@ i:hover {
   transform: translateX(-50%);
 }
 
-
 .tip {
   position: absolute;
   display: block;
@@ -255,12 +252,12 @@ button {
   margin: 10px 0;
 }
 
-
 #execute {
   margin-bottom: 10px;
 }
 
 #kofi button,
+#disc button,
 #docs button,
 #help button,
 #save,
@@ -272,6 +269,7 @@ button {
 }
 
 #kofi:hover button,
+#disc:hover button,
 #docs:hover button,
 #help:hover button,
 #save:not(:disabled):hover,
@@ -280,10 +278,10 @@ button {
   transform: scale(1.02);
 }
 
-
 #kofi:hover button            { background: rgb(61, 194, 255);        }
+#disc:hover button            { background: rgb(136, 129, 255);       }
 #docs:hover button            { background: rgb(242, 242, 61);        }
-#help:hover button            { background: rgb(245, 105, 255);        }
+#help:hover button            { background: rgb(245, 105, 255);       }
 #save:not(:disabled):hover    { background: rgb(126, 250, 73);        }
 #reload:not(:disabled):hover  { background: #dda852;                  }
 #clear:not(:disabled):hover   { background: #e5edee; color: black;  }

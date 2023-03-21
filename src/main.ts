@@ -241,10 +241,12 @@ let CreateInputs = () => {
       default: type = `text`
     }
 
-    input.setAttribute(`required`, commandList[key].required)
+    let required = commandList[key].required
+
+    input.setAttribute(`required`, required)
     input.setAttribute(`type`, type)
     input.setAttribute(`id`, key)
-    input.setAttribute(`placeholder`, GetDisplayString(key));
+    input.setAttribute(`placeholder`, (required ? `` : `[ Optional ] `) + GetDisplayString(key));
     input.classList.add(`disableable`)
     input.value = config[key] || ``;
     input.addEventListener(`focusout`, UpdateConfig)
@@ -307,7 +309,7 @@ let ReloadConfig = async () => {
 let ClearConfig = async () => {
   config = { toolExe: config.toolExe }
   modeSelect.value = ``
-  executeButton.classList.add(`tooltip`)
+  ResetOutput()
   L(`🧹 Configuration cleared!`)
   UpdateCommandList()
   CreateInputs()
@@ -400,6 +402,9 @@ let ToggleVisibility = (button : HTMLElement) => {
 //----------------------------------------------------------
 let ExecuteCommand = async () =>  {
   DisableElements(true)
+
+  ResetOutput()
+  L(`🐱‍🏍 Executing ${GetDisplayString(config.mode)}! Please wait.. ⏲`)
 
   const { command, valid, newConfigObject } = BuildCommand()
 
@@ -505,14 +510,14 @@ let GetCommands = () => {
         "buildVersion"          : { "required": true,   "type": "val" },
         "label"                 : { "required": true,   "type": "lbl" }, 
         "platform"              : { "required": true,   "type": "plt" },
-        "sandboxId"             : { "required": true,   "type": "val" }
+        "sandboxId"             : { "required": true,   "type": "pwd" }
     },
 
     "listBinaries" : {
+        "sandboxId"             : { "required": true,   "type": "pwd"  },
         "onlyLabeled"           : { "required": false,  "type": "bol"  },
         "num"                   : { "required": false,  "type": "num"  }, 
-        "outputFile"            : { "required": false,  "type": "out"  },
-        "sandboxId"             : { "required": true,   "type": "val"  }
+        "outputFile"            : { "required": false,  "type": "out"  }
     },
 
     "unlabelBinary" : {
@@ -542,7 +547,7 @@ let GetCommands = () => {
 let GetTooltips = () => {
   return {
       "AppArgs"            : "The commandline to send to the app on launch. This can be set to “” when no additional arguments are needed.",
-      "AppLaunch"          : "The path to the app executable that should be launched when running your game, relative to (and inside of) the BuildRoot. <br><br>For Mac binaries, this should be the executable file contained within the .app folder, usually in the location Game.app/Contents/MacOS/Game.",
+      "AppLaunch"          : "The path to the app executable that should be launched when running your game, relative to (and inside of) the BuildRoot. <br><br>For Mac binaries, this should be the executable file contained within the .app folder. <br><br>Example: Game.app/Contents/MacOS/Game.",
       "ArtifactId"         : "Specify the Artifact ID string that was provided along with your credentials.",
       "BuildRoot"          : "The path to the directory containing the binary to be read and processed. It can be an absolute path from the drive root or a relative path from the current working directory. <br><br>Additionally, it is recommended that this path be located near the drive root, to avoid any files exceeding the OS MAX_PATH limit (typically 260 characters).",
       "BuildVersion"       : "The version string for the build. This needs to be unique for each build of a specific artifact, independent of platform. <br><br>For example, BuildVersion-1.0 can only exists for Windows or Mac, not both. <br><br>The build version string has the following restrictions: <br><br>• Must be between 1 and 100 chars in length <br>• No whitespaces <br>• Only contains a-z, A-Z, 0-9, or .+-_",
@@ -554,9 +559,9 @@ let GetTooltips = () => {
       "CompareTagSet"      : "Specifies in quotes a comma separated list of install tags used to calculate differential statistics between the binaries. Multiple lists are allowed. Same rules apply as InstallTagsA.",
       "DestArtifactId"     : "Specifies the ID of the artifact the binary is being copied to.",
       "DiffAbortThreshold" : "Specified in bytes, an upper limit for original diffs to try to enhance. This allows short circuiting lengthy optimisation attempts on large diffs which may not benefit. Range accepted is n >= 1GB, defaults to never abort.",
-      "FileAttributeList"  : "A path to a text file containing a list of files and corresponding special attributes (e.g. executable bit) that should be set. See Setting Special File Attributes section for a description of the file contents. Note that the attributes file should not be inside your BuildRoot to ensure that it does not get erroneously included in your binary upload.",
-      "FileIgnoreList"     : "A path to a text file containing files to be included in the binary. The files must be BuildRoot relative. This is an alternative to using FileIgnoreList.",
-      "FileList"           : "A path to a text file containing files to be included in the binary. The files must be BuildRoot relative. This is an alternative to using FileIgnoreList.",
+      "FileAttributeList"  : "A path to a text file containing a list of files and corresponding special attributes (e.g. executable bit) that should be set. See Setting Special File Attributes section for a description of the file contents. <br><br>Note that the attributes file should not be inside your BuildRoot to ensure that it does not get erroneously included in your binary upload.",
+      "FileIgnoreList"     : "A path to a text file containing a list of files that should be excluded from the generated patch data. Each entry should be on a new line, and be a relative path from BuildRoot. <br><br>A forward slash (\"/\") separator should be used. <br><br>Note that if the ignore file is located inside BuildRoot then its own relative file path needs to be included in the ignore list to avoid it being included in the patch data.",
+      "FileList"           : "A path to a text file containing files to be included in the binary. The files must be BuildRoot relative. <br><br>This is an alternative to using FileIgnoreList.",
       "InstallTagsA"       : "Specifies in quotes a comma separated list of install tags used on BuildVersionA. You should include an empty string if you want to count untagged files. Leaving the parameter out will use all files. <br><br>• InstallTagsA=\"\" will be untagged files only. <br>• InstallTagsA=\",tag\" will be untagged files plus files tagged with `tag`. <br>• InstallTagsA=\"tag\" will be files tagged with `tag` only.",
       "InstallTagsB"       : "Specifies in quotes a comma separated list of install tags used on BuildVersionB. Same rules apply as InstallTagsA.",
       "Label"              : "The label name to apply to your binary. This must be the string \"Live\" when setting a binary as live to the public. Additionally, the string “Archive” can be used to label a single binary per platform that should be retained even after it is no longer live. Unlabeled binaries will be deleted after roughly a week by automatic cleanup jobs.",
