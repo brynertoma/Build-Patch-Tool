@@ -1,4 +1,6 @@
-# Build Patch Tool GUI - made with 🧡 by Bry 💩
+# Build Patch Tool
+
+### made with 🧡 by Bry 💩
 
 This is a simple and handy GUI to help developers manage their Unreal Engine binaries on the Epic Games Store.
 
