@@ -2,6 +2,8 @@
 
 This is a simple and handy GUI to help developers manage their Unreal Engine binaries on the Epic Games Store.
 
+You can download it from the [releases page](https://github.com/brynertoma/Build-Patch-Tool/releases).
+
 ![image](https://user-images.githubusercontent.com/11199820/226488441-e16b51bf-08f1-4166-a96a-f8bb7eb1fc9f.png)
 
 **This still requires the use of Epic's Build Patch Tool!** This app is just used as a wrapper to help simplify the process and prevent developers from having to use commands via the command line anytime they want to upload a new binary.
