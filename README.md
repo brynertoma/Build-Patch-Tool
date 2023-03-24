@@ -1,6 +1,6 @@
 # Build Patch Tool
 
-### Made with 🧡 by Bry 💩
+### Made with 🧡 by Bry
 
 This is a simple and handy GUI to help developers manage their Unreal Engine binaries on the Epic Games Store.
 
@@ -53,7 +53,7 @@ Paste the copied data into a notepad and you'll get something like this, minus t
 
 ### 🥳 Woohoo! You're now ready to move on! 🎉 ###
 
-# 💩 Bry's 🧡 BPT
+# Bry's BPT 🧡
 
 **DISCLAIMER: From now on I'll refer to `this` tool as `Bry's BPT` and `Epic's` tool as `Epic's BPT`.**
 
