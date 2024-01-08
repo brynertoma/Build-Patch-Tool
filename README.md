@@ -138,6 +138,6 @@ If you click `Assign Platform` and then assign an OS, if there is a binary activ
 
 ![image](https://user-images.githubusercontent.com/11199820/226500743-a7dcf4ef-d297-4fb7-88f6-d9b84b725bb8.png)
 
-You can see the new `Binary 0.0.1` we uploaded is now the `Active` one and the `0.0.8d` version was moved to the `Inactive Binaries` section. `Inactive Binaries` are deleted after a week.
+You can see the new `Binary 0.0.1` we uploaded is now the `Active` one and the `0.0.108d` version was moved to the `Inactive Binaries` section. `Inactive Binaries` are deleted after a week.
 
 ![image](https://user-images.githubusercontent.com/11199820/226500851-12216ff9-e298-4606-b9d3-785bc60f6d55.png)
